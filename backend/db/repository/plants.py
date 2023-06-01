@@ -39,3 +39,11 @@ def update_plant_by_id(plant_id: int, plant: PlantCreate, db: Session, fav_plant
     existing_plant.update(plant.__dict__)
     db.commit()
     return 1
+
+def delete_plant_by_id(plant_id: int,db: Session, fav_plant_id):
+    existing_plant = db.query(Plant).filter(Plant.plant_id == plant_id)
+    if not existing_plant.first():
+        return 0
+    existing_plant.delete(synchronize_session=False)
+    db.commit()
+    return 1

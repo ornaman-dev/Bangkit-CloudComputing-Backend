@@ -6,6 +6,7 @@ from db.repository.plants import create_new_plant
 from db.repository.plants import list_plants  # for list view
 from db.repository.plants import retreive_plant
 from db.repository.plants import update_plant_by_id  # for update plant by id
+from db.repository.plants import delete_plant_by_id  # for delete plant by id
 from db.session import get_db
 from fastapi import APIRouter
 from fastapi import Depends
@@ -57,3 +58,12 @@ def update_plant(plant_id: int, plant: PlantCreate, db: Session = Depends(get_db
             detail=f"Plant with plant_id {plant_id} not found",
         )
     return {"msg": "Successfully updated data."}
+
+@router.delete("/delete/{plant_id}")
+def delete_plant(plant_id: int,db: Session = Depends(get_db)):
+    current_user_id = 1
+    message = delete_plant_by_id(plant_id=plant_id,db=db,fav_plant_id=current_user_id)
+    if not message:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Plant with id {plant_id} not found")
+    return {"msg":"Successfully deleted."}
