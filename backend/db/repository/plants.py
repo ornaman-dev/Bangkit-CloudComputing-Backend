@@ -1,3 +1,4 @@
+# db > repository > plants.py
 from db.models.plants import Plant
 from schemas.plants import PlantCreate
 from sqlalchemy.orm import Session
@@ -16,3 +17,25 @@ def retreive_plant(plant_id: int, db: Session):
         db.query(Plant).filter(Plant.plant_id == plant_id).first()
     )  # It is equivalent to sql command: select * from plant where plant_id = 1;
     return item
+
+
+# def list_plants(db : Session):    # function list plants for view
+#     plants = db.query(Plant).all().filter(Plant.is_active == True)
+#     return plants
+
+
+def list_plants(db: Session):
+    plants = db.query(Plant).filter(Plant.is_active == True).all()
+    return plants
+
+
+def update_plant_by_id(plant_id: int, plant: PlantCreate, db: Session, fav_plant_id):
+    existing_plant = db.query(Plant).filter(Plant.plant_id == plant_id)
+    if not existing_plant.first():
+        return 0
+    plant.__dict__.update(
+        fav_plant_id=fav_plant_id
+    )  # update dictionary with new key value of fav_plant_id
+    existing_plant.update(plant.__dict__)
+    db.commit()
+    return 1
