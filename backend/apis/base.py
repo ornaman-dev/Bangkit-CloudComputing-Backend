@@ -1,5 +1,6 @@
 # apis > base.py
 from apis.version1 import route_general_pages
+from apis.version1 import route_login  # for login authentication
 from apis.version1 import route_plants
 from apis.version1 import route_users
 from fastapi import APIRouter
@@ -10,3 +11,6 @@ api_router.include_router(
 )
 api_router.include_router(route_users.router, prefix="/users", tags=["users"])
 api_router.include_router(route_plants.router, prefix="/plants", tags=["plants"])
+api_router.include_router(
+    route_login.router, prefix="/login", tags=["login"]
+)  # for login authentication
