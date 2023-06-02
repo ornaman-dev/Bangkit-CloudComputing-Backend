@@ -25,6 +25,7 @@ passlib[bcrypt]
 pytest
 requests
 httpx
+pytest-cov
 
 # for  cleaning up codebase on each commit
 pre-commit
