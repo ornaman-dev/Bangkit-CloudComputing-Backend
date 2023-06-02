@@ -20,3 +20,5 @@ repos:
     rev: v3.9.0
     hooks:
     -   id: reorder-python-imports
+default_language_version:
+    python: python3.11

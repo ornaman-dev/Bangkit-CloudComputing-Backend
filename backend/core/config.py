@@ -13,13 +13,13 @@ class Settings:
     PROJECT_DESC: str = "Just Another Ornaman Web Service (Backend)"
     PROJECT_VERSION: str = "1.0.0"
     PROJECT_SERVER: str = [
-        {"url": "http://localhost:8000", "description": "Development Server"},
+        {"url": "http://127.0.0.1:8000", "description": "Development Server"},
         {
-            "url": "http://127.0.0.1:8000/",
+            "url": "http://localhost:8000/",
             "description": "Another url alternatives",
         },
         {
-            "url": "[REPLACE WITH PRODUCTION URL]", # TODO REPLACE WITH PRODUCTION URL
+            "url": "[REPLACE WITH PRODUCTION URL]",  # TODO REPLACE WITH PRODUCTION URL
             "description": "Production Server",
         },
     ]
@@ -32,9 +32,9 @@ class Settings:
     )  # default postgres port is 5432
     POSTGRES_DB: str = os.getenv("POSTGRES_DB", "tdd")
     DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}"
-    # JWT Authentication Config 
-    SECRET_KEY :str = os.getenv("SECRET_KEY")   # 
-    ALGORITHM = "HS256"                         # type of algorithm
+    # JWT Authentication Config
+    SECRET_KEY: str = os.getenv("SECRET_KEY")  #
+    ALGORITHM = "HS256"  # type of algorithm
     ACCESS_TOKEN_EXPIRE_MINUTES = 30  # in minutes
 
 
