@@ -36,6 +36,8 @@ class Settings:
     SECRET_KEY: str = os.getenv("SECRET_KEY")  #
     ALGORITHM = "HS256"  # type of algorithm
     ACCESS_TOKEN_EXPIRE_MINUTES = 30  # in minutes
+    # for Unit test for JWT token header
+    TEST_USER_EMAIL = "test@example.com"
 
 
 settings = Settings()

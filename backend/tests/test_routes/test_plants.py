@@ -1,9 +1,11 @@
 # tests > test_routes > test_plants.py
-import json
-from fastapi import status # for deleting plant not use
+# import json
+from fastapi import status  # for deleting plant not use
 
 
-def test_create_plant(client):  # test create plant
+def test_create_plant(
+    client, normal_user_token_headers
+):  # added normal_user_token_headers
     data = {
         "english_name": "Aglaonema",
         "family_name": "Araceae",
@@ -15,16 +17,23 @@ def test_create_plant(client):  # test create plant
     }
 
     # response = client.post("/plants/create-plant/",json.dumps(data)) #orror output TypeError: TestClient.post() takes 2 positional arguments but 3 were given
-    response = client.post("/plants/create-plant/", json=data)
+    # response = client.post("/plants/create-plant/", json=data)
+    # response = client.post("/plants/create-plant/",data=json.dumps(data),headers=normal_user_token_headers)  # added header in the post request
+    response = client.post(
+        "/plants/create-plant/", json=data, headers=normal_user_token_headers
+    )  # added header in the post request
     assert response.status_code == 200
     assert response.json()["family_name"] == "Araceae"
     assert (
         response.json()["description"]
         == "Aglaonema adalah tanaman hias populer dari suku talas-talasan atau Araceae. Genus Aglaonema memiliki sekitar 30 spesies. Mereka berasal dari daerah tropis dan subtropis di Asia dan Nugini. Mereka umumnya dikenal sebagai Chinese evergreens."
     )
+    # Kita perlu memodifikasi setiap unit test di mana kita membuat request post/delete. Karena di sini tidak membatasi request get. Di sini tidak membutuhkan header untuk mendapatkan request.
 
 
-def test_read_plant(client):  # test read plant
+def test_read_plant(
+    client, normal_user_token_headers
+):  # test read plant added normal_user_token_headers
     data = {
         "english_name": "Aglaonema",
         "family_name": "Araceae",
@@ -37,7 +46,9 @@ def test_read_plant(client):  # test read plant
 
     # response = client.post("/plants/create-plant/",json.dumps(data)) ##TypeError: TestClient.post() takes 2 positional arguments but 3 were given
     # response = client.post("/plants/create-plant/", json=json.dumps(data))
-    response = client.post("/plants/create-plant/", json=data)
+    response = client.post(
+        "/plants/create-plant/", json=data, headers=normal_user_token_headers
+    )
 
     response = client.get("/plants/get/1/")
     assert response.status_code == 200
@@ -45,7 +56,9 @@ def test_read_plant(client):  # test read plant
 
 
 # List data
-def test_read_all_plants(client):
+def test_read_all_plants(
+    client, normal_user_token_headers
+):  # test read all plants added normal_user_token_headers
     data = {
         "english_name": "Aglaonema",
         "family_name": "Araceae",
@@ -57,8 +70,8 @@ def test_read_all_plants(client):
     }
     # client.post("/plants/create-plant/", json.dumps(data))
     # client.post("/plants/create-plant/", json.dumps(data))
-    client.post("/plants/create-plant/", json=data)
-    client.post("/plants/create-plant/", json=data)
+    client.post("/plants/create-plant/", json=data, headers=normal_user_token_headers)
+    client.post("/plants/create-plant/", json=data, headers=normal_user_token_headers)
 
     response = client.get("/plants/all/")
     assert response.status_code == 200
@@ -66,7 +79,9 @@ def test_read_all_plants(client):
     assert response.json()[1]
 
 
-def test_update_a_plant(client):
+def test_update_a_plant(
+    client, normal_user_token_headers
+):  # test update a plant & added normal_user_token_headers
     data = {
         "english_name": "NEW Aglaonema",
         "family_name": "NEW Araceae",
@@ -78,13 +93,16 @@ def test_update_a_plant(client):
     }
     # json=json.dumps(data)
     # client.post("/plants/create-plant/",json.dumps(data))
-    client.post("/plants/create-plant/", json=data)
+    client.post("/plants/create-plant/", json=data, headers=normal_user_token_headers)
     data["english_name"] = "test NEW english_name"
     # response = client.put("/plants/update/1",json.dumps(data))
     response = client.put("/plants/update/1", json=data)
     assert response.json()["msg"] == "Successfully updated data."
 
-def test_delete_a_plant(client):            #new
+
+def test_delete_a_plant(
+    client, normal_user_token_headers
+):  # test delete plant  & added normal_user_token_headers
     data = {
         "english_name": "NEW Aglaonema",
         "family_name": "NEW Araceae",
@@ -95,7 +113,8 @@ def test_delete_a_plant(client):            #new
         "date_posted": "2023-06-01",
     }
     # client.post("/plants/create-plant/",json.dumps(data))
-    client.post("/plants/create-plant/",json=data)
-    msg = client.delete("/plants/delete/1")
+    client.post("/plants/create-plant/", json=data, headers=normal_user_token_headers)
+    # msg = client.delete("/plants/delete/1")
+    client.delete("/plants/delete/1", headers=normal_user_token_headers)
     response = client.get("/plants/get/1/")
     assert response.status_code == status.HTTP_404_NOT_FOUND
