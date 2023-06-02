@@ -31,3 +31,6 @@ pre-commit
 
 # seedir to print tree structure of folders
 seedir
+
+# for jwt tokens 
+python-jose

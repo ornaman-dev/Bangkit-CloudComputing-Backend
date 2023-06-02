@@ -18,8 +18,12 @@ class Settings:
             "url": "http://127.0.0.1:8000/",
             "description": "Another url alternatives",
         },
+        {
+            "url": "[REPLACE WITH PRODUCTION URL]", # TODO REPLACE WITH PRODUCTION URL
+            "description": "Production Server",
+        },
     ]
-
+    # Database Config
     POSTGRES_USER: str = os.getenv("POSTGRES_USER")
     POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
     POSTGRES_SERVER: str = os.getenv("POSTGRES_SERVER", "localhost")
@@ -28,6 +32,10 @@ class Settings:
     )  # default postgres port is 5432
     POSTGRES_DB: str = os.getenv("POSTGRES_DB", "tdd")
     DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_SERVER}:{POSTGRES_PORT}/{POSTGRES_DB}"
+    # JWT Authentication Config 
+    SECRET_KEY :str = os.getenv("SECRET_KEY")   # 
+    ALGORITHM = "HS256"                         # type of algorithm
+    ACCESS_TOKEN_EXPIRE_MINUTES = 30  # in minutes
 
 
 settings = Settings()
