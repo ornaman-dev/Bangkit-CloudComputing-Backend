@@ -1,33 +1,53 @@
 {% extends "shared/base.html" %}
 
 {% block title %}
-  <title>Ornamental Plant Detail</title>
+  <title>{{plant.english_name}} - Ornaman</title>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-      <h1 class="display-4 text-danger">Ornamental Plant Detail</h1>
+      <h1 class="display-4 text-danger">{{plant.english_name}}</h1>
       <table class="table">
         <tbody>
           <tr>
-            <th scope="row">Ornamental Plant Title</th>
+            <th scope="row">English Name:</th>
             <td>{{plant.english_name}}</td>
           </tr>
           <tr>
-            <th scope="row">Family Name</th>
+            <th scope="row">Family Name:</th>
             <td>{{plant.family_name}}</td>
           </tr>
           <tr>
-            <th scope="row">Wikipedia URL</th>
+            <th scope="row">Common Name:</th>
+            <td>{{plant.common_name}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Wikipedia URL:</th>
             <td>{{plant.wikipedia_url}}</td>
           </tr>
           <tr>
-            <th scope="row">Description</th>
+            <th scope="row">Location:</th>
+            <td>{{plant.location}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Description:</th>
             <td>{{plant.description}}</td>
           </tr>
           <tr>
-            <th scope="row">Location</th>
-            <td>{{plant.location}}</td>
+            <th scope="row">Date Posted:</th>
+            <td>{{plant.date_posted}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Status:</th>
+            <td>{{plant.is_active}}</td>
+          </tr>
+          <tr>
+            <th scope="row">User ID:</th>
+            <td>{{plant.fav_plant_by}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Favorite By:</th>
+            <td>{{plant.fav_by}}</td>
           </tr>
         </tbody>
       </table>
