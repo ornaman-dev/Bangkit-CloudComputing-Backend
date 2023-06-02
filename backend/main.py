@@ -5,13 +5,15 @@ from db.base import Base  # now import Base from db.base not db.base_clas
 from db.session import engine
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+from webapps.base import api_router as webapp_router
 
 # from apis.general_pages.route_homepage import general_pages_router
 # from db.base_class import Base
 
 
 def include_router(app):
-    app.include_router(api_router)  # (general_pages_router)
+    app.include_router(api_router)  # test general_pages_router
+    app.include_router(webapp_router) # webapp monolitic
 
 
 def configure_static(app):
