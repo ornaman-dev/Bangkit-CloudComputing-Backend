@@ -13,8 +13,8 @@ router = APIRouter(include_in_schema=False)
 
 
 @router.get("/login/")
-def login(request: Request):
-    return templates.TemplateResponse("auth/login.html", {"request": request})
+def login(request : Request):
+    return templates.TemplateResponse("auth/login.html",{"request":request})
 
 
 @router.post("/login/")
@@ -23,7 +23,7 @@ async def login(request: Request, db: Session = Depends(get_db)):
     await form.load_data()
     if await form.is_valid():
         try:
-            form.__dict__.update(msg="Login Successful :)")
+            form.__dict__.update(msg="Login Successful 🌱")
             response = templates.TemplateResponse("auth/login.html", form.__dict__)
             login_for_access_token(response=response, form_data=form, db=db)
             return response
