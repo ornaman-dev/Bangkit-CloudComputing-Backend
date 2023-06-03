@@ -71,8 +71,5 @@ async def create_plant(request: Request, db: Session = Depends(get_db)):
 def show_plants_to_delete(request: Request, db: Session = Depends(get_db)):
     plants = list_plants(db=db)
     return templates.TemplateResponse(
-        "plants/show_plants_to_delete.html", {
-            "request":request,
-            "plants":plants
-        }
+        "plants/show_plants_to_delete.html", {"request": request, "plants": plants}
     )
