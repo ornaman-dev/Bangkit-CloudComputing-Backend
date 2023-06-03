@@ -13,8 +13,8 @@ router = APIRouter(include_in_schema=False)
 
 
 @router.get("/login/")
-def login(request : Request):
-    return templates.TemplateResponse("auth/login.html",{"request":request})
+def login(request: Request):
+    return templates.TemplateResponse("auth/login.html", {"request": request})
 
 
 @router.post("/login/")
