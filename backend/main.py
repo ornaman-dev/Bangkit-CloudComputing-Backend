@@ -1,19 +1,16 @@
 # main.py
 from apis.base import api_router
 from core.config import settings
-from db.base import Base  # import Base from db.base not db.base_clas
+from db.base import Base  
 from db.session import engine
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from webapps.base import api_router as webapp_router
 
-# from apis.general_pages.route_homepage import general_pages_router
-# from db.base_class import Base
-
 
 def include_router(app):
-    app.include_router(api_router)  # test general_pages_router
-    app.include_router(webapp_router) # webapp monolitic
+    app.include_router(api_router)  
+    app.include_router(webapp_router) 
 
 
 def configure_static(app):

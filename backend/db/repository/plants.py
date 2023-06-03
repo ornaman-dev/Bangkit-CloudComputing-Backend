@@ -18,13 +18,6 @@ def retreive_plant(plant_id: int, db: Session):
     return item
 
 
-# def  retreive_plant():
-
-# def list_plants(db : Session):    # function list plants for view
-#     plants = db.query(Plant).all().filter(Plant.is_active == True)
-#     return plants
-
-
 def list_plants(db: Session):
     plants = db.query(Plant).filter(Plant.is_active == True).all()
     return plants
