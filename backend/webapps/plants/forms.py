@@ -25,11 +25,11 @@ class PlantCreateForm:
 
     def is_valid(self):
         if not self.english_name or not len(self.english_name) >= 4:
-            self.errors.append("A valid title is required")
+            self.errors.append("A valid English Name is required")
         if not self.wikipedia_url or not (self.wikipedia_url.__contains__("http")):
             self.errors.append("Valid Url is required e.g. https://example.com")
         if not self.family_name or not len(self.family_name) >= 1:
-            self.errors.append("A valid company is required")
+            self.errors.append("A valid Family Name is required")
         if not self.description or not len(self.description) >= 20:
             self.errors.append("Description too short")
         if not self.errors:

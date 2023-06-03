@@ -17,7 +17,6 @@ from schemas.plants import PlantCreate
 from sqlalchemy.orm import Session
 from webapps.plants.forms import PlantCreateForm
 
-
 templates = Jinja2Templates(directory="templates")
 router = APIRouter(include_in_schema=False)
 
@@ -55,7 +54,7 @@ async def create_plant(request: Request, db: Session = Depends(get_db)):
             )  # scheme will hold "Bearer" and param will hold actual token value
             current_user: User = get_current_user_from_token(token=param, db=db)
             plant = PlantCreate(**form.__dict__)
-            plant = create_new_plant(plant=plant, db=db, owner_id=current_user.id)
+            plant = create_new_plant(plant=plant, db=db, fav_plant_id=current_user.id)
             return responses.RedirectResponse(
                 f"/detail/{plant.plant_id}", status_code=status.HTTP_302_FOUND
             )
@@ -72,5 +71,8 @@ async def create_plant(request: Request, db: Session = Depends(get_db)):
 def show_plants_to_delete(request: Request, db: Session = Depends(get_db)):
     plants = list_plants(db=db)
     return templates.TemplateResponse(
-        "plants/show_plants_to_delete.html", {"request": request, "plants": plants}
+        "plants/show_plants_to_delete.html", {
+            "request":request,
+            "plants":plants
+        }
     )

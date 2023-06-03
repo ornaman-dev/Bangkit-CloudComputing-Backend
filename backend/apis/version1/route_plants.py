@@ -1,13 +1,11 @@
 # apis > version1 > route_plants.py
 from typing import List  # for list view
+from typing import Optional
 
+from db.models.plants import Plant 
 from apis.version1.route_login import get_current_user_from_token
 from db.models.users import User
-from db.repository.plants import create_new_plant
-from db.repository.plants import delete_plant_by_id  # for delete plant by id
-from db.repository.plants import list_plants  # for list view
-from db.repository.plants import retreive_plant
-from db.repository.plants import update_plant_by_id  # for update plant by id
+from db.repository.plants import create_new_plant,delete_plant_by_id,list_plants,retreive_plant,search_plant,update_plant_by_id
 from db.session import get_db
 from fastapi import APIRouter
 from fastapi import Depends
@@ -21,24 +19,29 @@ from sqlalchemy.orm import Session
 router = APIRouter()
 
 
+@router.get("/autocomplete")
+def autocomplete(term: Optional[str] = None, db: Session = Depends(get_db)):
+    plants = search_plant(term, db=db)
+    plant_english_names = []
+    for plant in plants:
+        plant_english_names.append(plant.english_name)
+    return plant_english_names
+
+
 @router.post("/create-plant/", response_model=ShowPlant)
-# def create_plant(plant: PlantCreate, db: Session = Depends(get_db)):
-#     current_user = 1
-#     plant = create_new_plant(plant=plant, db=db, fav_plant_id=current_user)
-#     return plant
 def create_plant(
     plant: PlantCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user_from_token),
-):
-    plant = create_new_plant(plant=plant, db=db, fav_plant_id=current_user.id)
+    current_user: User = Depends(get_current_user_from_token)):
+    fav_plant_id = current_user.id
+    plant = create_new_plant(plant=plant, db=db, fav_plant_id=fav_plant_id)
     return plant
 
 
 # function retreive plant dari database
 @router.get(
     "/get/{plant_id}", response_model=ShowPlant
-)  # if we keep just "{id}" . it would stat catching all routes
+)  
 def read_plant(plant_id: int, db: Session = Depends(get_db)):
     plant = retreive_plant(plant_id=plant_id, db=db)
     if not plant:
@@ -55,36 +58,42 @@ def read_plants(db: Session = Depends(get_db)):
     return plants
 
 
-@router.put("/update/{plant_id}")  # new
-def update_plant(plant_id: int, plant: PlantCreate, db: Session = Depends(get_db)):
-    current_user = 1
-    message = update_plant_by_id(
-        plant_id=plant_id, plant=plant, db=db, fav_plant_id=current_user
-    )
-    if not message:
+@router.put("/update/{plant_id}")  # update plant
+def update_plant(
+    plant_id: int,
+    plant: PlantCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user_from_token)):
+    fav_plant_id = current_user.id
+    plant_retrieved = retreive_plant(plant_id=plant_id, db=db)
+    if not plant_retrieved:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Plant with plant_id {plant_id} not found",
+            detail=f"Plant with id {plant_id} does not exist")
+    if plant_retrieved.fav_plant_id == current_user.id or current_user.is_superuser:
+        message = update_plant_by_id(
+            plant_id=plant_id, plant=plant, db=db, fav_plant_id=fav_plant_id
         )
-    return {"msg": "Successfully updated data."}
+    else:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=f"You are not authorized to update.")
+    return {"detail": "Successfully updated data."}
 
 
 @router.delete("/delete/{plant_id}")
 def delete_plant(
     plant_id: int,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user_from_token),
-):
+    current_user: User = Depends(get_current_user_from_token)):
     plant = retreive_plant(plant_id=plant_id, db=db)
     if not plant:
-        return HTTPException(
+        raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Plant with {plant_id} does not exist",
-        )
-    print(plant.fav_plant_id, current_user.id, current_user.is_superuser)
+            detail=f"Plant with id {plant_id} does not exist")
     if plant.fav_plant_id == current_user.id or current_user.is_superuser:
         delete_plant_by_id(plant_id=plant_id, db=db, fav_plant_id=current_user.id)
-        return {"msg": "Successfully deleted."}
+        return {"detail": "Plant Successfully deleted"}
     raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED, detail="You are not permitted!!!!"
+        status_code=status.HTTP_401_UNAUTHORIZED, detail="You are not permitted!!"
     )

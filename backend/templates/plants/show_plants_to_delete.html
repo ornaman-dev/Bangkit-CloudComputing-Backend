@@ -18,9 +18,9 @@
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">Sr. No.</th>
-            <th scope="col">Title</th>
-            <th scope="col">Company</th>
+            <th scope="col">Num</th>
+            <th scope="col">English Name</th>
+            <th scope="col">Family Name</th>
             <th scope="col">Wikipedia URL</th>
             <th scope="col">Location</th>
             <th scope="col">Action</th>
@@ -30,9 +30,9 @@
             {% for plant in plants %}
             <tr>
                 <th scope="row">{{loop.index}}</th>
-                <td>{{plant.}}</td>
                 <td>{{plant.english_name}}</td>
                 <td>{{plant.family_name}}</td>
+                <td>{{plant.wikipedia_url}}</td>
                 <td>{{plant.location}}</td>
                 <td><button class="btn btn-danger btn-sm" onclick="delete_plant({{plant.plant_id}})">Delete</button></td>
             </tr>
