@@ -1,0 +1,11 @@
+.space
+__pycache__
+.env
+env
+test_db.db
+.hintrc
+sql_app.db
+
+.pytest_cache
+htmlcov
+.coverage
