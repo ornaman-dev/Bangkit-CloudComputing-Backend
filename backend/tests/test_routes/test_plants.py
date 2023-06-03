@@ -97,7 +97,7 @@ def test_update_a_plant(
     data["class_name"] = "test NEW class_name"
     # response = client.put("/plants/update/1",json.dumps(data))
     response = client.put("/plants/update/1", json=data)
-    assert response.json()["msg"] == "Successfully updated data."
+    assert response.json()["detail"] == "Successfully updated data."
 
 
 def test_delete_a_plant(

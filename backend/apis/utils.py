@@ -37,4 +37,4 @@ class OAuth2PasswordBearerWithCookie(OAuth2):
                 )
             else:
                 return None
-        return param
+        return param        
