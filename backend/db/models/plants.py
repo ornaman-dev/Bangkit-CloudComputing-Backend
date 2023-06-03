@@ -20,3 +20,4 @@ class Plant(Base):
     is_active = Column(Boolean(), default=True)
     fav_plant_id = Column(Integer, ForeignKey("user.id"))
     pav_by = relationship("User", back_populates="fav_plant")
+    image_url = Column(String)  # sample_image_url

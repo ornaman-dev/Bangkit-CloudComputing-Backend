@@ -1,27 +1,10 @@
 <div class="card" style="width: 18rem;">
+  <img src="{{obj.image_url}}" class="card-img-top" alt="{{obj.common_name}}">
     <div class="card-body">
       <h5 class="card-title">{{obj.class_name}}</h5>
       <p class="card-text">Family Name : {{obj.family_name}}</p>
-      <p class="card-text">Taxonimic Data: {{obj.taxonomic_data_url}}</p>
+      <p class="card-text"><a href="{{obj.taxonomic_data_url}}" class="card-link">Taxonimic Data</a></p>
       <p class="card-text">Description: {{obj.description[:60]}}</p>
       <a href="/detail/{{obj.plant_id}}" class="btn btn-primary">Read More</a>
-    </div>
-  </div>
-
-  <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{obj.class_name}}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="{{obj.taxonomic_data_url}}" class="card-link">Card link</a>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
-
-  <div class="card text-bg-success mb-3" style="max-width: 18rem;">
-    <div class="card-header">Header</div>
-    <div class="card-body">
-      <h5 class="card-title">Success card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     </div>
   </div>

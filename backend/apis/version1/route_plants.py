@@ -27,10 +27,10 @@ router = APIRouter()
 @router.get("/autocomplete")
 def autocomplete(term: Optional[str] = None, db: Session = Depends(get_db)):
     plants = search_plant(term, db=db)
-    plant_english_names = []
+    plant_class_names = []
     for plant in plants:
-        plant_english_names.append(plant.class_name)
-    return plant_english_names
+        plant_class_names.append(plant.class_name)
+    return plant_class_names
 
 
 @router.post("/create-plant/", response_model=ShowPlant)
@@ -98,7 +98,8 @@ def delete_plant(
     if not plant:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Plant with id {plant_id} does not exist")
+            detail=f"Plant with id {plant_id} does not exist",
+        )
     if plant.fav_plant_id == current_user.id or current_user.is_superuser:
         delete_plant_by_id(plant_id=plant_id, db=db, fav_plant_id=current_user.id)
         return {"detail": "Plant Successfully deleted"}

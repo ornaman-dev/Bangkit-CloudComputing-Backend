@@ -14,6 +14,7 @@ class PlantBase(BaseModel):
     location: Optional[str] = "Remote"
     description: Optional[str] = None
     date_posted: Optional[date] = datetime.now().date()
+    image_url: Optional[str] = None
 
 
 # this will be used to validate data while creating a Plant
@@ -32,6 +33,7 @@ class ShowPlant(PlantBase):
     location: str
     date_posted: date
     description: Optional[str]
+    image_url: Optional[str]
 
     class Config:  # to convert non dict obj to json
         orm_mode = True
