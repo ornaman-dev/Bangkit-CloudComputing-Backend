@@ -7,10 +7,10 @@ def test_create_plant(
     client, normal_user_token_headers
 ):  # added normal_user_token_headers
     data = {
-        "english_name": "Aglaonema",
+        "class_name": "Aglaonema",
         "family_name": "Araceae",
         "common_name": "Sri Rezeki",
-        "wikipedia_url": "id.wikipedia.org/wiki/Sri_rezeki",
+        "taxonomic_data_url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:2671-1",
         "location": "Indonesia",
         "description": "Aglaonema adalah tanaman hias populer dari suku talas-talasan atau Araceae. Genus Aglaonema memiliki sekitar 30 spesies. Mereka berasal dari daerah tropis dan subtropis di Asia dan Nugini. Mereka umumnya dikenal sebagai Chinese evergreens.",
         "date_posted": "2023-06-01",
@@ -35,10 +35,10 @@ def test_read_plant(
     client, normal_user_token_headers
 ):  # test read plant added normal_user_token_headers
     data = {
-        "english_name": "Aglaonema",
+        "class_name": "Aglaonema",
         "family_name": "Araceae",
         "common_name": "Sri Rezeki",
-        "wikipedia_url": "id.wikipedia.org/wiki/Sri_rezeki",
+        "taxonomic_data_url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:2671-1",
         "location": "Indonesia",
         "description": "Aglaonema adalah tanaman hias populer dari suku talas-talasan atau Araceae. Genus Aglaonema memiliki sekitar 30 spesies. Mereka berasal dari daerah tropis dan subtropis di Asia dan Nugini. Mereka umumnya dikenal sebagai Chinese evergreens.",
         "date_posted": "2023-06-01",
@@ -52,7 +52,7 @@ def test_read_plant(
 
     response = client.get("/plants/get/1/")
     assert response.status_code == 200
-    assert response.json()["english_name"] == "Aglaonema"
+    assert response.json()["class_name"] == "Aglaonema"
 
 
 # List data
@@ -60,10 +60,10 @@ def test_read_all_plants(
     client, normal_user_token_headers
 ):  # test read all plants added normal_user_token_headers
     data = {
-        "english_name": "Aglaonema",
+        "class_name": "Aglaonema",
         "family_name": "Araceae",
         "common_name": "Sri Rezeki",
-        "wikipedia_url": "id.wikipedia.org/wiki/Sri_rezeki",
+        "taxonomic_data_url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:2671-1",
         "location": "Indonesia",
         "description": "Aglaonema adalah tanaman hias populer dari suku talas-talasan atau Araceae. Genus Aglaonema memiliki sekitar 30 spesies. Mereka berasal dari daerah tropis dan subtropis di Asia dan Nugini. Mereka umumnya dikenal sebagai Chinese evergreens.",
         "date_posted": "2023-06-01",
@@ -83,10 +83,10 @@ def test_update_a_plant(
     client, normal_user_token_headers
 ):  # test update a plant & added normal_user_token_headers
     data = {
-        "english_name": "NEW Aglaonema",
+        "class_name": "NEW Aglaonema",
         "family_name": "NEW Araceae",
         "common_name": "NEW Sri Rezeki",
-        "wikipedia_url": "id.wikipedia.org/wiki/Sri_rezeki",
+        "taxonomic_data_url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:2671-1",
         "location": "Indonesia",
         "description": "NEW Aglaonema adalah tanaman hias populer dari suku talas-talasan atau Araceae. Genus Aglaonema memiliki sekitar 30 spesies. Mereka berasal dari daerah tropis dan subtropis di Asia dan Nugini. Mereka umumnya dikenal sebagai Chinese evergreens.",
         "date_posted": "2023-06-01",
@@ -94,7 +94,7 @@ def test_update_a_plant(
     # json=json.dumps(data)
     # client.post("/plants/create-plant/",json.dumps(data))
     client.post("/plants/create-plant/", json=data, headers=normal_user_token_headers)
-    data["english_name"] = "test NEW english_name"
+    data["class_name"] = "test NEW class_name"
     # response = client.put("/plants/update/1",json.dumps(data))
     response = client.put("/plants/update/1", json=data)
     assert response.json()["msg"] == "Successfully updated data."
@@ -104,10 +104,10 @@ def test_delete_a_plant(
     client, normal_user_token_headers
 ):  # test delete plant  & added normal_user_token_headers
     data = {
-        "english_name": "NEW Aglaonema",
+        "class_name": "NEW Aglaonema",
         "family_name": "NEW Araceae",
         "common_name": "NEW Sri Rezeki",
-        "wikipedia_url": "id.wikipedia.org/wiki/Sri_rezeki",
+        "taxonomic_data_url": "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:2671-1",
         "location": "Indonesia",
         "description": "NEW Aglaonema adalah tanaman hias populer dari suku talas-talasan atau Araceae. Genus Aglaonema memiliki sekitar 30 spesies. Mereka berasal dari daerah tropis dan subtropis di Asia dan Nugini. Mereka umumnya dikenal sebagai Chinese evergreens.",
         "date_posted": "2023-06-01",

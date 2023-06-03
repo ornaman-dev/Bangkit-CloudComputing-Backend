@@ -1,7 +1,7 @@
 # main.py
 from apis.base import api_router
 from core.config import settings
-from db.base import Base  # now import Base from db.base not db.base_clas
+from db.base import Base  # import Base from db.base not db.base_clas
 from db.session import engine
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles

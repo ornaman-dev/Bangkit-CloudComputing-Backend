@@ -1,17 +1,17 @@
 {% extends "shared/base.html" %}
 
 {% block title %}
-  <title>{{plant.english_name}} - Ornaman</title>
+  <title>{{plant.class_name}} - Ornaman</title>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-      <h1 class="display-4 text-danger">{{plant.english_name}}</h1>
+      <h1 class="display-4 text-danger">{{plant.class_name}}</h1>
       <table class="table">
         <tbody>
           <tr>
-            <th scope="row">English Name:</th>
-            <td>{{plant.english_name}}</td>
+            <th scope="row">Name:</th>
+            <td>{{plant.class_name}}</td>
           </tr>
           <tr>
             <th scope="row">Family Name:</th>
@@ -22,8 +22,8 @@
             <td>{{plant.common_name}}</td>
           </tr>
           <tr>
-            <th scope="row">Wikipedia URL:</th>
-            <td>{{plant.wikipedia_url}}</td>
+            <th scope="row">Taxonimic Data:</th>
+            <td>{{plant.taxonomic_data_url}}</td>
           </tr>
           <tr>
             <th scope="row">Location:</th>

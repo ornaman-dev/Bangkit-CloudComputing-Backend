@@ -10,10 +10,10 @@ from sqlalchemy.orm import relationship
 
 class Plant(Base):
     plant_id = Column(Integer, primary_key=True, index=True)  # plant_id
-    english_name = Column(String, nullable=False)
+    class_name = Column(String, nullable=False)
     family_name = Column(String, nullable=False)  # family_name
     common_name = Column(String, nullable=False)  # common_name
-    wikipedia_url = Column(String)  # wikipedia_url
+    taxonomic_data_url = Column(String)  # taxonomic_data_url
     location = Column(String, nullable=False)
     description = Column(String, nullable=False)
     date_posted = Column(Date)

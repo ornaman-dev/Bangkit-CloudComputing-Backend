@@ -29,7 +29,7 @@ def autocomplete(term: Optional[str] = None, db: Session = Depends(get_db)):
     plants = search_plant(term, db=db)
     plant_english_names = []
     for plant in plants:
-        plant_english_names.append(plant.english_name)
+        plant_english_names.append(plant.class_name)
     return plant_english_names
 
 

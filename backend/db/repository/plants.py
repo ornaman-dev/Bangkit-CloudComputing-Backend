@@ -31,7 +31,7 @@ def list_plants(db: Session):
 
 
 def search_plant(query: str, db: Session):
-    plants = db.query(Plant).filter(Plant.english_name.contains(query))
+    plants = db.query(Plant).filter(Plant.class_name.contains(query))
     return plants
 
 
