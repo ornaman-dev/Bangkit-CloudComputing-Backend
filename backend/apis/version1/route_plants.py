@@ -98,8 +98,7 @@ def delete_plant(
     if not plant:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Plant with id {plant_id} does not exist",
-        )
+            detail=f"Plant with id {plant_id} does not exist")
     if plant.fav_plant_id == current_user.id or current_user.is_superuser:
         delete_plant_by_id(plant_id=plant_id, db=db, fav_plant_id=current_user.id)
         return {"detail": "Plant Successfully deleted"}

@@ -46,7 +46,7 @@
 {% block scripts %}
 <script type="text/javascript">
     function delete_plant(plant_id){
-        fetch('/plant/delete/'+plant_id,{
+        fetch('/plants/delete/'+plant_id,{
             method:'DELETE',
         })
         .then(response => response.json())
