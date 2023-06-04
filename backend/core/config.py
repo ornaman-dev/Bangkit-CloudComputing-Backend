@@ -16,7 +16,11 @@ class Settings:
         {"url": "http://127.0.0.1:8000", "description": "Development Server"},
         {
             "url": "http://localhost:8000/",
-            "description": "Another url alternatives",
+            "description": "Another Local Host url alternatives",
+        },
+        {
+            "url": "https://ornamanbackend-1-j5052767.deta.app",
+            "description": "deta.space Builder Test",
         },
         {
             "url": "[REPLACE WITH PRODUCTION URL]",  # TODO REPLACE WITH PRODUCTION URL
