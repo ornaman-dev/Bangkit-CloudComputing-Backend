@@ -33,4 +33,4 @@ visit  127.0.0.1:8000/
 * Deploy to Cloud
 
 ## Live Preview & Test
-[Click Here](https://ornamanbackend-1-j5052767.deta.app/) for Preview & Test | Powered by: [Beta Space Builder](https://deta.space/)
+[Click Here](https://ornamanbackend-1-j5052767.deta.app/) for Preview & Test | Powered by: [Deta Space Builder](https://deta.space/)
