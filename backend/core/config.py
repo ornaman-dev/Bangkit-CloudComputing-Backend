@@ -4,7 +4,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-env_path = Path(".") / ".env"
+# env_path = Path(".") / ".env" # local env
+env_path = Path(".") / ".envgcp" # try GCP env
 load_dotenv(dotenv_path=env_path)
 
 
