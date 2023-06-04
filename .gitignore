@@ -8,3 +8,4 @@ sql_app.db
 .pytest_cache
 htmlcov
 .coverage
+.envgcp
