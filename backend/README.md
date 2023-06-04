@@ -31,3 +31,6 @@ visit  127.0.0.1:8000/
 * Update 
 * Connect to Cloud SQL Instances 
 * Deploy to Cloud
+
+## Live Preview & Test
+[Click Here](https://ornamanbackend-1-j5052767.deta.app/) for Preview & Test | Powered by: [Beta Space Builder](https://deta.space/)
