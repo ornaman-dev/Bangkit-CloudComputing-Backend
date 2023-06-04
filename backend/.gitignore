@@ -1,4 +1,5 @@
 .space
+Spacefile
 __pycache__
 .env
 env
@@ -9,3 +10,4 @@ sql_app.db
 .pytest_cache
 htmlcov
 .coverage
+*.sql
