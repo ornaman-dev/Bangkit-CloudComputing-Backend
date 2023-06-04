@@ -10,7 +10,8 @@ aiofiles
 
 # for database
 sqlalchemy
-psycopg2
+# psycopg2
+psycopg2-binary # solve space push builder psycopg2 error
 
 # for loading environment variables
 python-dotenv
