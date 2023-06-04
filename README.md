@@ -29,4 +29,5 @@ visit  127.0.0.1:8000/
 
 ## TODO
 * Update 
+* Connect to Cloud SQL Instances 
 * Deploy to Cloud
