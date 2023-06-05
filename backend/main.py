@@ -36,8 +36,4 @@ def start_application():
     return app
 
 
-# @app.get("/")
-# def hello_api():
-#     return {"msg":"Hello FastAPI"}
-
 app = start_application()
