@@ -14,14 +14,14 @@ class Settings:
     PROJECT_DESC: str = "Just Another Ornaman Web Service (Backend)"
     PROJECT_VERSION: str = "0.0.1"
     PROJECT_SERVER: str = [
+        {
+            "url": "https://ornamanbackend-1-j5052767.deta.app",
+            "description": "for online test",
+        },
         {"url": "http://127.0.0.1:8000", "description": "Development Server"},
         {
             "url": "http://localhost:8000/",
             "description": "Another Local Host url alternatives",
-        },
-        {
-            "url": "https://ornamanbackend-1-j5052767.deta.app",
-            "description": "deta.space Builder Test",
         },
         {
             "url": "[REPLACE WITH PRODUCTION URL]",  # TODO REPLACE WITH PRODUCTION URL
