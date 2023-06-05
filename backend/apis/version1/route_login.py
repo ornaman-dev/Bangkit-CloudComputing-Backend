@@ -20,6 +20,7 @@ from sqlalchemy.orm import Session
 router = APIRouter()
 
 
+# Authentication
 def authenticate_user(username: str, password: str, db: Session):
     user = get_user(username=username, db=db)
     print(user)
@@ -52,6 +53,7 @@ def login_for_access_token(
     return {"access_token": access_token, "token_type": "bearer"}
 
 
+# Permissions
 oauth2_scheme = OAuth2PasswordBearerWithCookie(tokenUrl="/login/token")
 
 
