@@ -1,5 +1,7 @@
-# Ornaman Backend 
+# Ornaman Backend
 > Just Another Ornaman Web Service (Backend)
+
+Please feel free to [submit issues](https://github.com/ornaman-dev/Bangkit-CloudComputing-Backend/issues/new) if you find bugs, want to add features, or anything else related to Ornaman Web Service (Backend).
 
 ## Capstone Project by C23-PS369
 [Ornaman](https://ornaman.com/) by C23-PS369 Bangkit Academy 2023
@@ -28,8 +30,8 @@ visit  127.0.0.1:8000/
 ```
 
 ## TODO
-* Update 
-* Connect to Cloud SQL Instances 
+* Update
+* Connect to Cloud SQL Instances
 * Deploy to Cloud
 
 ## Live Preview & Test
