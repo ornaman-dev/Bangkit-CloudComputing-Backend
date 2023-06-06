@@ -1,7 +1,6 @@
 from db.base_class import Base
 from sqlalchemy import Boolean
 from sqlalchemy import Column
-from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy.orm import relationship
@@ -9,7 +8,9 @@ from sqlalchemy.orm import relationship
 
 class User(Base):
     id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, unique=True, nullable=False)
+    username = Column(
+        String, unique=True, nullable=False
+    )  # TODO ganti jadi name atau full_name
     email = Column(String, nullable=False, unique=True, index=True)
     hashed_password = Column(String, nullable=False)
     is_active = Column(Boolean(), default=True)

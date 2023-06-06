@@ -6,33 +6,35 @@
 
 {% block content %}
 <div class="container">
-      <h1 class="display-4 text-danger">Signup</h1>
-
-      <div class="text-danger font-weight-bold">
-        {% for error in errors %}
-          <li>{{error}}</li>
-        {% endfor %}
-      </div>
-
-      <form method="POST">
-          <div class="mb-3">
-              <label>username</label>
-              <input type="text" required class="form-control" name="username"
-              value="{{username}}" placeholder="username">
+  <div class="row">
+    <h3 small class="display-6 text-center">
+      Signup to
+      <small class="text-body-secondary text-success">Ornaman</small>
+    </h3>
+    <div class="text-danger font-weight-bold">
+      {% for error in errors %}
+      <li>{{error}}</li>
+      {% endfor %}
+    </div>
+    <form method="POST">
+      <div class="mb-3">
+              <label>Name:</label>
+              <input type="text" required class="form-control" name="namanya"
+              value="{{username}}" placeholder="name">
           </div>
           <div class="mb-3">
-            <label>email</label>
+            <label>Username:</label>
             <input type="email" required class="form-control" name="email"
             value="{{email}}" placeholder="email">
         </div>
         <div class="mb-3">
-            <label>password</label>
+            <label>Password:</label>
             <input type="password" required class="form-control" name="password"
             value="{{password}}" placeholder="password">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Register</button>
       </form>
-
+    </div>
 </div>
 
 {% endblock %}

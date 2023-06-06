@@ -24,7 +24,7 @@ class UserCreateForm:
         if not self.email or not (self.email.__contains__("@")):
             self.errors.append("Valid email is required")
         if not self.password or not len(self.password) > 5:
-            self.errors.append("Password should be > 5 chars")
+            self.errors.append("Password should be > 6 chars")
         if not self.errors:
             return True
         return False

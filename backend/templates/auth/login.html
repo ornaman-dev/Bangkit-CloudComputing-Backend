@@ -7,7 +7,10 @@
 {% block content %}
   <div class="container">
     <div class="row">
-      <h5 class="display-5">Login to Ornaman</h5>
+      <h3 small class="display-6">
+        Login to
+        <small class="text-body-secondary text-success">Ornaman</small>
+      </h3>
       <div class="text-danger font-weight-bold">
           {% for error in errors %}
             <li>{{error}}</li>
@@ -34,7 +37,7 @@
           <label>Password</label>
           <input type="password" required placeholder="Choose a secure password" value="{{password}}" name="password" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Submit</button>
       </form>
     </div>
   </div>

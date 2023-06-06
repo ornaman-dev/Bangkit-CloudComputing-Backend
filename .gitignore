@@ -4,8 +4,9 @@ env
 test_db.db
 .hintrc
 sql_app.db
-
+NO/
 .pytest_cache
 htmlcov
 .coverage
+.coveragec
 .envgcp

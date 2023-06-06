@@ -11,13 +11,12 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from webapps.users.forms import UserCreateForm
 
-
 router = APIRouter(include_in_schema=False)
 templates = Jinja2Templates(directory="templates")
 
 
 @router.get("/register/")
-def register(request: Request):
+def go_to_register(request: Request):
     return templates.TemplateResponse("users/register.html", {"request": request})
 
 
