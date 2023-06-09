@@ -21,7 +21,7 @@ def test_retreive_plant_by_id(db_session: Session):
         taxonomic_data_url=taxonomic_data_url,
         location=location,
         description=description,
-    )
+    ) 
     plant = create_new_plant(plant=plant_schema, db=db_session, fav_plant_id=fav_by.id)
     retreived_plant = retreive_plant(plant_id=plant.plant_id, db=db_session)
     assert retreived_plant.plant_id == plant.plant_id
