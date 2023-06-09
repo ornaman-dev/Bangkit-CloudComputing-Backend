@@ -6,21 +6,29 @@ from sqlalchemy.orm import Session
 
 
 def create_new_user(user: UserCreate, db: Session):
+    # Membuat user baru berdasarkan data yang diberikan
     user = User(
         username=user.username,  # TODO ganti jadi name atau full_name
         email=user.email,
         hashed_password=Hasher.get_password_hash(user.password),
         is_active=True,
         is_superuser=False,
+        id_rec=user.id_rec,
     )
+    # Menambahkan user baru ke sesi basis data
     db.add(user)
+    # Melakukan komit ke basis data untuk menyimpan perubahan
     db.commit()
+    # Memperbarui objek user dengan data yg disimpan di basis data
     db.refresh(user)
+    # Mengembalikan objek user yang baru dibuat
     return user
 
 
 def get_user_by_email(
     email: str, db: Session
-):  # function verifying if a user exists with the same email
+):  
+    # Mengambil user berdasarkan alamat email
     user = db.query(User).filter(User.email == email).first()
+    # Mengembalikan objek user yang ditemukan (jika ada)
     return user
