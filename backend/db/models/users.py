@@ -15,4 +15,5 @@ class User(Base):
     hashed_password = Column(String, nullable=False)
     is_active = Column(Boolean(), default=True)
     is_superuser = Column(Boolean(), default=False)
-    fav_plant = relationship("Plant", back_populates="pav_by")
+    fav_plant = relationship("Plant", back_populates="fav_by")
+    id_rec = Column(String)
