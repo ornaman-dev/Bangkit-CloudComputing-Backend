@@ -19,17 +19,21 @@ class OAuth2PasswordBearerWithCookie(OAuth2):
     ):
         if not scopes:
             scopes = {}
+        # Mendefinisikan aliran OAuth untuk penggunaan kata sandi (password)
         flows = OAuthFlowsModel(password={"tokenUrl": tokenUrl, "scopes": scopes})
+        # Memanggil konstruktor kelas induk
         super().__init__(flows=flows, scheme_name=scheme_name, auto_error=auto_error)
 
     async def __call__(self, request: Request) -> Optional[str]:
+        # Mengambil token akses dari Cookie yang bersifat httpOnly
         authorization: str = request.cookies.get(
             "access_token"
-        )  # changed to accept access token from httpOnly Cookie
-
+        )
+        # Mendapatkan skema dan parameter otorisasi dari header Authorization
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
+                # Jika tidak ada otorisasi atau skema bukan "bearer", lempar HTTPException
                 raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
                     detail="Not authenticated",
@@ -37,4 +41,5 @@ class OAuth2PasswordBearerWithCookie(OAuth2):
                 )
             else:
                 return None
+        # Mengembalikan parameter token akses       
         return param        
