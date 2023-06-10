@@ -30,9 +30,11 @@ visit  127.0.0.1:8000/
 ```
 
 ## TODO
-* Update
-* Connect to Cloud SQL Instances
-* Deploy to Cloud
+- [ ] Keep updating until the capstone period is over
+- [x] Connect to GCP Cloud SQL Instances
+- [x] Deploy to Cloud
+- [ ] Acquisition and integration with other Ornaman Rest API, such as [Classification API](https://github.com/ornaman-dev/Bangkit-CloudComputing/tree/main/ClassificationAPI) and [Recommendation API](https://github.com/ornaman-dev/Bangkit-CloudComputing/tree/main/RecommendationAPI)
+- [ ] Create a comprehensive Documentation
 
 ## Live Preview & Test
 [Click Here](https://ornamanbackend-1-j5052767.deta.app/) for Preview & Test | Powered by: [Deta Space Builder](https://deta.space/)
