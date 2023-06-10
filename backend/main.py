@@ -6,9 +6,9 @@ from db.session import engine
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from webapps.base import api_router as webapp_router
+from fastapi.middleware.cors import CORSMiddleware
 
 # from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware # Handle https
-
 
 def include_router(app):
     app.include_router(api_router)  # 
@@ -32,7 +32,14 @@ def start_application():
         version=settings.PROJECT_VERSION,
         servers=settings.PROJECT_SERVER,
     )
-    # app.add_middleware(HTTPSRedirectMiddleware) #handle https
+    app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.ORIGIN_DOMAIN_ALLOWED,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+        # app.add_middleware(HTTPSRedirectMiddleware) #handle https
     include_router(app)
     configure_static(app)
     create_tables()
