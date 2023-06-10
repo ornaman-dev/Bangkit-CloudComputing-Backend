@@ -32,3 +32,20 @@ def get_user_by_email(
     user = db.query(User).filter(User.email == email).first()
     # Mengembalikan objek user yang ditemukan (jika ada)
     return user
+
+
+def list_users(db: Session):
+    """
+    Mengembalikan daftar semua user yang aktif dari database.
+    """
+    users = db.query(User).filter(User.is_active == True).all()
+    return users
+
+def retreive_user(id: int, db: Session):
+    """
+    Mengembalikan data user berdasarkan ID yang diberikan dari database.
+    """
+    item = db.query(User).filter(User.id == id).first()
+    # Ini ekuivalen dengan perintah SQL: select * from user where id = {id};
+    return item
+

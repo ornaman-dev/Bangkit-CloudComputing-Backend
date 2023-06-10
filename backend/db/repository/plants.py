@@ -14,7 +14,7 @@ def create_new_plant(plant: PlantCreate, db: Session, fav_plant_id: int):
 
 def retreive_plant(plant_id: int, db: Session):
     item = db.query(Plant).filter(Plant.plant_id == plant_id).first()
-    # It is equivalent to sql command: select * from plant where plant_id = 1;
+    # It is equivalent to sql command: select * from plant where plant_id = {plant_id};
     return item
 
 

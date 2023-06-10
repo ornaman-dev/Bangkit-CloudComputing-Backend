@@ -1,3 +1,4 @@
+# webapps > users > forms.py
 from typing import List
 from typing import Optional
 
@@ -20,7 +21,7 @@ class UserCreateForm:
 
     async def is_valid(self):
         if not self.username or not len(self.username) > 4:
-            self.errors.append("Username must be > 4 chars")
+            self.errors.append("Name must be > 4 chars")
         if not self.email or not (self.email.__contains__("@")):
             self.errors.append("Valid email is required")
         if not self.password or not len(self.password) > 5:
