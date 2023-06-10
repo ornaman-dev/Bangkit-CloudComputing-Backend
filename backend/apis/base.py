@@ -1,5 +1,5 @@
 # apis > base.py
-from apis.version1 import route_general_pages
+# from apis.version1 import route_general_pages    # tidak digunakan setelah implementasi webapps.base
 from apis.version1 import route_login  # for login authentication
 from apis.version1 import route_plants
 from apis.version1 import route_users
