@@ -28,6 +28,15 @@ class Settings:
             "description": "Production Server",
         },
     ]
+    ORIGIN_DOMAIN_ALLOWED = [
+        "http://localhost",
+        "http://localhost:8000",
+        "http://127.0.0.1"
+        "http://127.0.0.1:8000",
+        "https://ornaman.com",
+        "https://api.ornaman.com",
+        "https://ornamanbackend-1-j5052767.deta.app",
+    ]
     # Database Config
     POSTGRES_USER: str = os.getenv("POSTGRES_USER")
     POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
@@ -42,7 +51,7 @@ class Settings:
     ALGORITHM = "HS256"  # type of algorithm
     ACCESS_TOKEN_EXPIRE_MINUTES = 30  # in minutes
     # for Unit test for JWT token header
-    TEST_USER_EMAIL = "test@example.com"
+    TEST_USER_EMAIL = "testuser@ornaman.com"
 
 
 settings = Settings()
