@@ -43,3 +43,6 @@ python-multipart
 # GCP test
 pg8000==1.29.4
 cloud-sql-python-connector==1.2.3
+
+# for database migration
+# alembic
