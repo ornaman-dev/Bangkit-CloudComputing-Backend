@@ -31,7 +31,8 @@ class Settings:
     ORIGIN_DOMAIN_ALLOWED: str = [
         "http://localhost",
         "http://localhost:8000",
-        "http://127.0.0.1" "http://127.0.0.1:8000",
+        "http://127.0.0.1",
+        "http://127.0.0.1:8000",
         "https://ornaman.com",
         "https://api.ornaman.com",
         "https://ornamanbackend-1-j5052767.deta.app",
