@@ -36,6 +36,7 @@ class PlantCreate(PlantBase):
 
 # this will be used to format the response to not to have id,fav_plant_id etc
 class ShowPlant(PlantBase):
+    plant_id:int
     class_name: str
     family_name: str
     taxonomic_data_url: Optional[str]
