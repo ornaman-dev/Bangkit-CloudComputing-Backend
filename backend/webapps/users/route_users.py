@@ -12,6 +12,8 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from webapps.users.forms import UserCreateForm
 
+import uuid
+
 router = APIRouter(include_in_schema=False)
 templates = Jinja2Templates(directory="templates")
 
@@ -26,8 +28,9 @@ async def register(request: Request, db: Session = Depends(get_db)):
     form = UserCreateForm(request)
     await form.load_data()
     if await form.is_valid():
+        id = 'user-' + str(uuid.uuid4())[:6]
         user = UserCreate(
-            username=form.username, email=form.email, password=form.password
+            id=id, name=form.name, email=form.email, password=form.password
         )
         try:
             user = create_new_user(user=user, db=db)

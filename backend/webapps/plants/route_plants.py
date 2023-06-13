@@ -1,6 +1,6 @@
 # webapps > plants > route_plants.py
 from apis.version1.route_login import get_current_user_from_token
-from db.models.users import User
+from db.models.users import Users
 from db.repository.plants import create_new_plant
 from db.repository.plants import list_plants
 from db.repository.plants import retreive_plant
@@ -52,7 +52,7 @@ async def create_plant(request: Request, db: Session = Depends(get_db)):
             scheme, param = get_authorization_scheme_param(
                 token
             )  # scheme will hold "Bearer" and param will hold actual token value
-            current_user: User = get_current_user_from_token(token=param, db=db)
+            current_user: Users = get_current_user_from_token(token=param, db=db)
             plant = PlantCreate(**form.__dict__)
             plant = create_new_plant(plant=plant, db=db, fav_plant_id=current_user.id)
             return responses.RedirectResponse(

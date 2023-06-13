@@ -5,6 +5,6 @@ from sqlalchemy import String
 
 
 class Favorite(Base):
-    fav_id = Column(String, primary_key=True, index=True)
-    user_fav_id = Column(String, ForeignKey("user.id"))
-    plant_fav_id = Column(String, ForeignKey("plant.plant_id"))
+    id = Column(String, primary_key=True, index=True)
+    user_id = Column(String, ForeignKey("users.id"))
+    plant_id = Column(String, ForeignKey("plants.id"))

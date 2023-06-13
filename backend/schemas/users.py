@@ -14,10 +14,11 @@ class UserBase(BaseModel):
 
 # Properti yang diperlukan saat membuat User baru
 class UserCreate(BaseModel):
-    username: str  # TODO ganti jadi name atau full_name
+    id: str
+    name: str  # TODO ganti jadi name atau full_name
     email: EmailStr
     password: str
-    id_rec: str  # TODO tidak disajikan, tapi diatur di db menjadi automatic fill
+    # id_rec: str  # TODO tidak disajikan, tapi diatur di db menjadi automatic fill
 
 
 # Menyajikan detail response sesuai kebutuhan (penyaringan respons Pydantic)
