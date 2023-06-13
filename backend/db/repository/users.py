@@ -1,20 +1,22 @@
 # db > repository > users.py
 from core.hashing import Hasher
-from db.models.users import User
+from db.models.users import Users
 from schemas.users import UserCreate
 from sqlalchemy.orm import Session
 
 
 def create_new_user(user: UserCreate, db: Session):
     # Membuat user baru berdasarkan data yang diberikan
-    user = User(
-        username=user.username,  # TODO ganti jadi name atau full_name
+    user = Users(
+        id=user.id,
+        name=user.name,  # TODO ganti jadi name atau full_name
         email=user.email,
-        hashed_password=Hasher.get_password_hash(user.password),
-        is_active=True,
-        is_superuser=False,
-        id_rec=user.id_rec,
+        password=user.password
     )
+        # hashed_password=Hasher.get_password_hash(user.password),
+        # is_active=True,
+        # is_superuser=False,
+        # id_rec=user.id_rec,
     # Menambahkan user baru ke sesi basis data
     db.add(user)
     # Melakukan komit ke basis data untuk menyimpan perubahan

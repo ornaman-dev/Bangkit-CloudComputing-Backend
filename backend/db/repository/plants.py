@@ -1,5 +1,5 @@
 # db > repository > plants.py
-from db.models.plants import Plant
+from db.models.plants import Plants
 from schemas.plants import PlantCreate
 from sqlalchemy.orm import Session
 
@@ -19,7 +19,8 @@ def retreive_plant(plant_id: int, db: Session):
 
 
 def list_plants(db: Session):
-    plants = db.query(Plant).filter(Plant.is_active == True).all()
+    # plants = db.query(Plant).filter(Plant.is_active == True).all()
+    plants = db.query(Plants).all()
     return plants
 
 

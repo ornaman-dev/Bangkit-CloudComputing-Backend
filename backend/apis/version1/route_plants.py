@@ -3,7 +3,7 @@ from typing import List  # for list view
 from typing import Optional
 
 from apis.version1.route_login import get_current_user_from_token
-from db.models.users import User
+from db.models.users import Users
 from db.repository.plants import create_new_plant
 from db.repository.plants import delete_plant_by_id
 from db.repository.plants import list_plants
@@ -36,7 +36,7 @@ def autocomplete(term: Optional[str] = None, db: Session = Depends(get_db)):
 def create_plant(
     plant: PlantCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user_from_token),
+    current_user: Users = Depends(get_current_user_from_token),
 ):
     fav_plant_id = current_user.id
     plant = create_new_plant(plant=plant, db=db, fav_plant_id=fav_plant_id)
@@ -66,7 +66,7 @@ def update_plant(
     plant_id: int,
     plant: PlantCreate,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user_from_token),
+    current_user: Users = Depends(get_current_user_from_token),
 ):
     fav_plant_id = current_user.id
     plant_retrieved = retreive_plant(plant_id=plant_id, db=db)
@@ -91,7 +91,7 @@ def update_plant(
 def delete_plant(
     plant_id: int,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user_from_token),
+    current_user: Users = Depends(get_current_user_from_token),
 ):
     plant = retreive_plant(plant_id=plant_id, db=db)
     if not plant:

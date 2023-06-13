@@ -1,8 +1,8 @@
 # db > repository > login.py
-from db.models.users import User
+from db.models.users import Users
 from sqlalchemy.orm import Session
 
 
 def get_user(username: str, db: Session):
-    user = db.query(User).filter(User.email == username).first()
+    user = db.query(Users).filter(Users.email == username).first()
     return user

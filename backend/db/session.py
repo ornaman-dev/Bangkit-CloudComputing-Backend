@@ -6,9 +6,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 # Database selain SQLite, misal : PostgreSQL (uncomment 2 line)
-SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+# SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
+# engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
+engine = create_engine("mysql://ps369:sup3rs3cr3t@34.124.238.240/ornaman?charset=utf8mb4")
 
 # Database SQLite
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./rombak_sql_app.db"
