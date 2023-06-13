@@ -85,7 +85,7 @@ class Settings:
     MYSQL_SERVER: str = os.getenv("MYSQL_SERVER", "localhost")
     MYSQL_PORT: str = os.getenv("MYSQL_PORT", 5432)
     MYSQL_DB: str = os.getenv("MYSQL_DB", "ornaman_backend_db")
-    DATABASE_URL = f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_SERVER}:{MYSQL_PORT}/{MYSQL_DB}"
+    DATABASE_URL = f"mysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_SERVER}/{MYSQL_DB}?charset=utf8mb4"
     # JWT Authentication Config
     SECRET_KEY: str = os.getenv("SECRET_KEY")  #
     ALGORITHM = "HS256"  # type of algorithm

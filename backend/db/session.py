@@ -9,7 +9,8 @@ from sqlalchemy.orm import sessionmaker
 # SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
 # engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
-engine = create_engine("mysql://ps369:sup3rs3cr3t@34.124.238.240/ornaman?charset=utf8mb4")
+SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 # Database SQLite
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./rombak_sql_app.db"
