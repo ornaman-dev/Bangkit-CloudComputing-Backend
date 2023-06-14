@@ -26,7 +26,7 @@ def authenticate_user(username: str, password: str, db: Session):
     print(user)
     if not user:
         return False
-    if not Hasher.verify_password(password, user.hashed_password):
+    if not Hasher.verify_password(password, user.password):
         return False
     return user
 

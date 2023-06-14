@@ -44,13 +44,13 @@ def create_plant(
 
 
 # function retreive plant dari database
-@router.get("/get/{plant_id}", response_model=ShowPlant)
-def read_plant(plant_id: int, db: Session = Depends(get_db)):
-    plant = retreive_plant(plant_id=plant_id, db=db)
+@router.get("/get/{id}", response_model=ShowPlant)
+def read_plant(id: str, db: Session = Depends(get_db)):
+    plant = retreive_plant(id=id, db=db)
     if not plant:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Plant with this id {plant_id} does not exist",
+            detail=f"Plant with this id {id} does not exist",
         )
     return plant
 

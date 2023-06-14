@@ -38,6 +38,6 @@ async def register(request: Request, db: Session = Depends(get_db)):
                 "/?msg=Succesfully-Registered", status_code=status.HTTP_302_FOUND
             )
         except IntegrityError:
-            form.__dict__.get("errors").append("Duplicate username or email")
+            form.__dict__.get("errors").append("Duplicate email")
             return templates.TemplateResponse("users/register.html", form.__dict__)
     return templates.TemplateResponse("users/register.html", form.__dict__)

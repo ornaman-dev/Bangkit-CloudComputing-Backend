@@ -29,9 +29,9 @@ def home(request: Request, db: Session = Depends(get_db), msg: str = None):
     )
 
 
-@router.get("/detail/{plant_id}")
-def plant_detail(plant_id: int, request: Request, db: Session = Depends(get_db)):
-    plant = retreive_plant(plant_id=plant_id, db=db)
+@router.get("/detail/{id}")
+def plant_detail(id: str, request: Request, db: Session = Depends(get_db)):
+    plant = retreive_plant(id=id, db=db)
     return templates.TemplateResponse(
         "plants/detail.html", {"request": request, "plant": plant}
     )
