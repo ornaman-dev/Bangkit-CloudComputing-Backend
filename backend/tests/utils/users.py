@@ -18,7 +18,7 @@ def create_random_fav_by(db: Session):
     password = random_lower_string()
     id_rec = f"{random_lower_string()}-"
     user_schema = UserCreate(
-        username=email, email=email, password=password, id_rec=id_rec
+        email=email, password=password, id_rec=id_rec
     )
     user = create_new_user(user=user_schema, db=db)
     return user
@@ -32,7 +32,7 @@ def user_authentication_headers(
     """
     # Implementasi logika untuk mendapatkan header otentikasi
     # menggunakan email, password, dan id_rec
-    data = {"username": email, "password": password}
+    data = {"email": email, "password": password}
     r = client.post("/login/token", data=data)
     response = r.json()
     auth_token = response["access_token"]
@@ -51,7 +51,7 @@ def authentication_token_from_email(client: TestClient, email: str, db: Session)
     if not user:
         # Jika pengguna tidak ditemukan, buat pengguna baru dengan email tersebut
         user_in_create = UserCreate(
-            username=email, email=email, password=password, id_rec=id_rec
+            name=email, email=email, password=password
         )
         user = create_new_user(user=user_in_create, db=db)
     else:

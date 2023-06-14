@@ -12,8 +12,8 @@ def create_new_plant(plant: PlantCreate, db: Session, fav_plant_id: int):
     return plant_object
 
 
-def retreive_plant(plant_id: int, db: Session):
-    item = db.query(Plant).filter(Plant.plant_id == plant_id).first()
+def retreive_plant(id: str, db: Session):
+    item = db.query(Plants).filter(Plants.id == id).first()
     # It is equivalent to sql command: select * from plant where plant_id = {plant_id};
     return item
 
@@ -25,12 +25,12 @@ def list_plants(db: Session):
 
 
 def search_plant(query: str, db: Session):
-    plants = db.query(Plant).filter(Plant.class_name.contains(query))
+    plants = db.query(Plants).filter(Plants.class_name.contains(query))
     return plants
 
 
 def update_plant_by_id(plant_id: int, plant: PlantCreate, db: Session, fav_plant_id):
-    existing_plant = db.query(Plant).filter(Plant.plant_id == plant_id)
+    existing_plant = db.query(Plants).filter(Plants.plant_id == plant_id)
     if not existing_plant.first():
         return 0
     plant.__dict__.update(
@@ -42,7 +42,7 @@ def update_plant_by_id(plant_id: int, plant: PlantCreate, db: Session, fav_plant
 
 
 def delete_plant_by_id(plant_id: int, db: Session, fav_plant_id):
-    existing_plant = db.query(Plant).filter(Plant.plant_id == plant_id)
+    existing_plant = db.query(Plants).filter(Plants.plant_id == plant_id)
     if not existing_plant.first():
         return 0
     existing_plant.delete(synchronize_session=False)

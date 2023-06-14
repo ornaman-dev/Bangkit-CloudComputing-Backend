@@ -4,14 +4,16 @@ from db.models.users import Users
 from schemas.users import UserCreate
 from sqlalchemy.orm import Session
 
+import uuid
 
 def create_new_user(user: UserCreate, db: Session):
     # Membuat user baru berdasarkan data yang diberikan
+    id = 'user-' + str(uuid.uuid4())[:6]
     user = Users(
-        id=user.id,
+        id=id,
         name=user.name,  # TODO ganti jadi name atau full_name
         email=user.email,
-        password=user.password
+        password=Hasher.get_password_hash(user.password)
     )
         # hashed_password=Hasher.get_password_hash(user.password),
         # is_active=True,
@@ -29,7 +31,7 @@ def create_new_user(user: UserCreate, db: Session):
 
 def get_user_by_email(email: str, db: Session):
     # Mengambil user berdasarkan alamat email
-    user = db.query(User).filter(User.email == email).first()
+    user = db.query(Users).filter(Users.email == email).first()
     # Mengembalikan objek user yang ditemukan (jika ada)
     return user
 
@@ -38,7 +40,7 @@ def list_users(db: Session):
     """
     Mengembalikan daftar semua user yang aktif dari database.
     """
-    users = db.query(User).filter(User.is_active == True).all()
+    users = db.query(Users).all()
     return users
 
 

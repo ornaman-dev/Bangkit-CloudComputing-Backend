@@ -3,7 +3,7 @@ import json
 
 def test_create_user(client):
     data = {
-        "username": "testuser",
+        "name": "testuser",
         "email": "testuser@ornaman.com",
         "password": "testing",
         "id_rec": "tes-id_rec",

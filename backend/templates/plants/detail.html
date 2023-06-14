@@ -6,24 +6,24 @@
 
 {% block content %}
 <div class="container">
-      <h1 class="display-4 text-danger">{{plant.class_name}}</h1>
+      <h1 class="display-4 text-danger">{{plant.name_alt}}</h1>
       <table class="table">
         <tbody>
           <tr>
             <th scope="row">ID:</th>
-            <td>{{plant.plant_id}}</td>
+            <td>{{plant.id}}</td>
           </tr>
           <tr>
             <th scope="row">Name:</th>
-            <td>{{plant.class_name}}</td>
+            <td>{{plant.name}}</td>
           </tr>
           <tr>
             <th scope="row">Family Name:</th>
-            <td>{{plant.family_name}}</td>
+            <td>{{plant.name_alt}}</td>
           </tr>
           <tr>
             <th scope="row">Common Name:</th>
-            <td>{{plant.common_name}}</td>
+            <td>{{plant.name}}</td>
           </tr>
           <tr>
             <th scope="row">Taxonimic Data:</th>
@@ -35,7 +35,7 @@
           </tr>
           <tr>
             <th scope="row">Description:</th>
-            <td>{{plant.description}}</td>
+            <td>{{plant.desc}}</td>
           </tr>
           <tr>
             <th scope="row">Date Posted:</th>
@@ -81,10 +81,10 @@
             <th scope="row">Fact:</th>
             <td>{{plant.fact}}</td>
           </tr>
-          <tr>
+          <!-- <tr>
             <th scope="row">Rec ID:</th>
             <td>{{plant.rec_id}}</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
 
