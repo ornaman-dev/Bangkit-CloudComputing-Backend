@@ -15,16 +15,14 @@ def create_new_user(user: UserCreate, db: Session):
         email=user.email,
         password=Hasher.get_password_hash(user.password)
     )
-        # hashed_password=Hasher.get_password_hash(user.password),
-        # is_active=True,
-        # is_superuser=False,
-        # id_rec=user.id_rec,
+    
     # Menambahkan user baru ke sesi basis data
     db.add(user)
     # Melakukan komit ke basis data untuk menyimpan perubahan
     db.commit()
     # Memperbarui objek user dengan data yg disimpan di basis data
     db.refresh(user)
+    
     # Mengembalikan objek user yang baru dibuat
     return user
 

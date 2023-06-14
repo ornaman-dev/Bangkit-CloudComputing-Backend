@@ -25,8 +25,6 @@ class ShowUser(BaseModel):
     id: str
     name: str  # TODO ganti jadi name atau full_name
     email: EmailStr
-    # is_active: bool
-    # id_rec: str = None  # Mengatur nilai default menjadi None
 
     class Config:  # memberi tahu pydantic untuk mengonversi objek non-dictionary menjadi json
         orm_mode = True

@@ -1,4 +1,5 @@
 from apis.version1.route_login import get_current_user_from_token
+from sqlalchemy.exc import IntegrityError
 from db.repository.users import (
     create_new_user,
 )  # Import 'create_new_user' dari modul 'users' di dalam direktori db > repository untuk membuat user baru di basis data.
@@ -24,15 +25,24 @@ from sqlalchemy.orm import (
 router = APIRouter()  # Membuat objek router menggunakan APIRouter().
 
 
-@router.post(
-    "/", response_model=ShowUser
-)  # Endpoint ini memiliki prefix '/user's dan tags ["users"] yang telah diatur di file base.py dalam direktori > apis.
+# Endpoint ini memiliki prefix '/user's dan tags ["users"] yang telah diatur di file base.py dalam direktori > apis.
+@router.post("/")  
 # Membuat fungsi create_user() sebagai handler untuk endpoint "Create User".
 def create_user(
     user: UserCreate, db: Session = Depends(get_db)
 ):  # Anotasi tipe 'UserCreate' untuk parameter user untuk memvalidasi data yang dikirim ke endpoint.
-    user = create_new_user(user=user, db=db)
-    return user
+    try:
+        user = create_new_user(user=user, db=db)
+    except IntegrityError:
+        return {
+            "message": "fail. email duplicate entry"
+        }
+    
+    return {
+        "id": user.id,
+        "name": user.name,
+        "email": user.email
+    }
 
 
 # function retreive user dari database
