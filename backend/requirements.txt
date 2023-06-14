@@ -1,6 +1,7 @@
 fastapi
 uvicorn
-
+gunicorn
+mysqlclient
 
 # for template
 jinja2
