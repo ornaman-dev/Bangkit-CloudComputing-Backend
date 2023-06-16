@@ -10,6 +10,7 @@ sql_app.db
 *.sqlite
 *.db
 .coveragerc
+.envgcp
 
 #######
 # Byte-compiled / optimized / DLL files

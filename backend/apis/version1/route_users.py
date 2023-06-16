@@ -44,29 +44,6 @@ def create_user(
         "email": user.email
     }
 
-
-# function retreive user dari database
-# @router.get("/get/{id}", response_model=ShowUser)
-# def read_user(
-#     id: int,
-#     user: UserCreate,
-#     db: Session = Depends(get_db),
-#     current_user: User = Depends(get_current_user_from_token),
-# ):
-#    id = current_user.id
-#    userlist = list_users(id=id, db=db)
-#    if not userlist:
-#         raise HTTPException(
-#             status_code=status.HTTP_404_NOT_FOUND,
-#             detail=f"User with this id {id} does not exist",
-#         )
-#    if userlist.id == current_user.id:
-#         message = get_user_by_email(
-#             id=id, user=user, db=db,
-#         )
-#    return user
-
-
 @router.get(
     "/me", response_model=ShowUser, dependencies=[Depends(get_current_user_from_token)]
 )
